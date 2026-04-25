@@ -12,7 +12,8 @@ async function initializeMenu() {
     const entries = [
         { name: "Game", config: "game.json", file: "game/index.html"},
         { name: "Credits", config: "credits.json", file: "credits/index.html"},
-        { name: "Quit Game", config: null, file: null}
+        { name: "Quit Game", config: null, file: null},
+        { name: "Manual", config: "procmon.json", file: "procmon/index.html"}
     ];
 
     // --- DOM references

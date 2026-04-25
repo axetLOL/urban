@@ -1,0 +1,25 @@
+{
+  "procmon": [
+    {
+      "output": "index.html",
+      "components": [
+        "document.html"
+      ],
+      "componentPath": "procmon"
+    },
+    {
+      "output": "style.css",
+      "components": [
+        "css/root.css",
+        "procmon/style.css"
+      ]
+    },
+    {
+      "output": "procmon.js",
+      "components": [
+        "main.js"
+      ],
+      "componentPath": "procmon"
+    }
+  ]
+}

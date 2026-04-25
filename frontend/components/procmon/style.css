@@ -1,0 +1,337 @@
+/* procmon/style.css */
+/* All sizing uses root.css cqh variables. No raw pixels. */
+
+/* ============================================
+ *  LAYOUT
+ * ============================================ */
+
+body {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: var(--space-14);
+    gap: var(--space-0);
+    overflow: hidden;
+}
+
+/* Left panel: spawn menu + process list */
+#panel-left {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 22cqw;
+    border-right: var(--space-1) solid var(--color-border);
+    background: var(--color-bg-dark);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Right panel: selected info + consoles */
+#panel-right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ============================================
+ *  SPAWN MENU
+ * ============================================ */
+
+#spawn-menu {
+    padding: var(--space-12) var(--space-12) var(--space-10);
+    border-bottom: var(--space-1) solid var(--color-border);
+    background: rgba(255,255,255,0.03);
+    flex-shrink: 0;
+}
+
+#spawn-menu label {
+    display: block;
+    color: var(--color-accent);
+    font-size: var(--space-12);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+}
+
+#spawn-path {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--color-button-start);
+    border: var(--space-1) solid var(--color-border);
+    border-radius: var(--space-4);
+    color: var(--color-text-light);
+    font-family: inherit;
+    font-size: var(--space-12);
+    padding: var(--space-6) var(--space-8);
+    margin-bottom: var(--space-8);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+#spawn-path:focus {
+    border-color: var(--color-accent);
+}
+
+#spawn-btn {
+    display: block;
+    width: 100%;
+    background: linear-gradient(90deg, var(--color-button-start), var(--color-button-end));
+    border: var(--space-1) solid var(--color-border);
+    border-radius: var(--space-4);
+    color: var(--color-text-lighter);
+    font-family: inherit;
+    font-size: var(--space-12);
+    padding: var(--space-6) var(--space-10);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+#spawn-btn:hover {
+    border-color: var(--color-accent);
+    background: linear-gradient(90deg, var(--color-button-hover-start), var(--color-button-hover-end));
+}
+
+/* ============================================
+ *  PROCESS LIST
+ * ============================================ */
+
+#proc-list-wrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-8);
+}
+
+#proc-list-title {
+    color: var(--color-accent);
+    font-size: var(--space-12);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: var(--space-4) var(--space-4) var(--space-8);
+    flex-shrink: 0;
+}
+
+.proc-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-8);
+    border-radius: var(--space-4);
+    border: var(--space-1) solid transparent;
+    margin-bottom: var(--space-4);
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.15s, background 0.15s;
+    cursor: default;
+}
+
+.proc-row:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.proc-row.selected {
+    border-color: var(--color-accent);
+    background: rgba(249, 214, 92, 0.07);
+}
+
+.proc-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--space-12);
+    color: var(--color-text-light);
+}
+
+.proc-pid {
+    color: var(--color-accent);
+    font-size: var(--space-12);
+    flex-shrink: 0;
+    min-width: var(--space-40);
+    text-align: right;
+}
+
+.proc-btn {
+    border: var(--space-1) solid var(--color-border);
+    border-radius: var(--space-3);
+    font-family: inherit;
+    font-size: var(--space-10);
+    padding: var(--space-2) var(--space-6);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.kill-btn {
+    background: rgba(180, 40, 40, 0.2);
+    color: #e07070;
+    border-color: #5a2222;
+}
+
+.kill-btn:hover {
+    background: rgba(180, 40, 40, 0.45);
+    border-color: #e07070;
+}
+
+.select-btn {
+    background: rgba(255,255,255,0.04);
+    color: var(--color-text-lighter);
+}
+
+.select-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+#proc-empty {
+    color: var(--color-border);
+    font-size: var(--space-12);
+    padding: var(--space-12) var(--space-8);
+    font-style: italic;
+}
+
+/* ============================================
+ *  RIGHT PANEL - SELECTED + CONSOLES
+ * ============================================ */
+
+#selected-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-10);
+    padding: var(--space-10) var(--space-14);
+    border-bottom: var(--space-1) solid var(--color-border);
+    background: rgba(255,255,255,0.03);
+    flex-shrink: 0;
+}
+
+#selected-label {
+    color: var(--color-accent);
+    font-size: var(--space-12);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+}
+
+#selected-pid {
+    font-size: var(--space-18);
+    font-weight: bold;
+    color: var(--color-text-light);
+    min-width: var(--space-60);
+}
+
+#selected-pid.empty {
+    color: var(--color-border);
+    font-size: var(--space-12);
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* ============================================
+ *  CONSOLES
+ * ============================================ */
+
+#consoles {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    gap: var(--space-0);
+}
+
+.console-pane {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    border-right: var(--space-1) solid var(--color-border);
+}
+
+.console-pane:last-child {
+    border-right: none;
+}
+
+.console-header {
+    display: flex;
+    align-items: center;
+    padding: var(--space-8) var(--space-12);
+    border-bottom: var(--space-1) solid var(--color-border);
+    background: rgba(255,255,255,0.025);
+    flex-shrink: 0;
+}
+
+.console-title {
+    color: var(--color-accent);
+    font-size: var(--space-12);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex: 1;
+}
+
+.console-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-8) var(--space-10);
+    background: #070707;
+    color: #c8c8c8;
+    font-family: inherit;
+    font-size: var(--space-12);
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.5;
+}
+
+/* stdin console has input row at bottom */
+#stdin-pane {
+    display: flex;
+    flex-direction: column;
+}
+
+#stdin-input-row {
+    display: flex;
+    align-items: center;
+    border-top: var(--space-1) solid var(--color-border);
+    background: rgba(255,255,255,0.025);
+    flex-shrink: 0;
+}
+
+#stdin-input-row span {
+    color: var(--color-border);
+    font-size: var(--space-12);
+    padding: var(--space-6) var(--space-8);
+    flex-shrink: 0;
+    user-select: none;
+}
+
+#stdin-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text-light);
+    font-family: inherit;
+    font-size: var(--space-12);
+    padding: var(--space-6) var(--space-6);
+    caret-color: var(--color-accent);
+}
+
+/* ============================================
+ *  SCROLLBARS
+ * ============================================ */
+
+::-webkit-scrollbar {
+    width: var(--space-5);
+    height: var(--space-5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-scrollbar);
+    border-radius: var(--space-3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-scrollbar-hover);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
