@@ -6,6 +6,6 @@ void update (void) {
 }
 
 void delta (void) {
-    //stub
+    printf("Buffer:%ld, Header:%ld\n", *(uint_fast64_t *)(base_ptr), *(uint_fast64_t *)(base_ptr+8));
     return;
 }

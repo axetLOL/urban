@@ -1,12 +1,24 @@
 #include "cmd.h"
 
-//no args
-void session_new(void) {
-    //define_logical_volumes();
+/* ── helpers ── */
+
+static void define_logical_volumes(void){
+
     return;
 }
 
-//4 byte lenght+name (not null terminated)
+/* ── commands ── */
+
+//no args
+void session_new(void) {
+
+    *(uint64_t *)(base_ptr+8) = 64; //lenght of the pointer header
+
+    define_logical_volumes();
+    return;
+}
+
+//string path, null terminated
 void session_load(void) {
     return;
 }
