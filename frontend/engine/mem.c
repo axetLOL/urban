@@ -31,3 +31,27 @@ void aligned_free(void* ptr) {
     free(ptr);
 #endif
 }
+
+void* aligned_recalloc(void* ptr, size_t old_size, size_t new_size, size_t alignment) {
+    if (!ptr) {
+        // behaves like calloc
+        return aligned_calloc(new_size, alignment);
+    }
+
+    if (new_size == 0) {
+        aligned_free(ptr);
+        return NULL;
+    }
+
+    void* new_ptr = aligned_calloc(new_size, alignment);
+    if (!new_ptr) {
+        return NULL; // allocation failed, original ptr untouched
+    }
+
+    // copy the minimum of old/new
+    size_t copy_size = old_size < new_size ? old_size : new_size;
+    memcpy(new_ptr, ptr, copy_size);
+
+    aligned_free(ptr);
+    return new_ptr;
+}

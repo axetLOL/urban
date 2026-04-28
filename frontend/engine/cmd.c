@@ -8,8 +8,6 @@
 //no args
 void session_new(void) {
 
-    uint64_t lv_count=1;
-
     *(uint64_t *)(base_ptr+8) = lv_count*(sizeof(logical_volume_header));
 
     lv = ( logical_volume_header *)(base_ptr+16);
@@ -21,17 +19,21 @@ void session_new(void) {
     lv[0].id = 1; //ID of LV1
 
     //L1 content, tiles
-    uint64_t tile_count = lv[0].size/sizeof(int32_t);
-    for(uint64_t i = 0; i<tile_count; i++){
-        int32_t val = 0;
-        //if x=(0...3) -> val = -1
-        //else if y=2 -> val = 1
-        // else-> val = 0
+    int32_t *tile_ptr = (int32_t *)(base_ptr + lv[0].ptr);
 
-        if (i%64<4) val=-1;
-        else if (i/64==2)val = 1;
+    for (uint64_t y = 0; y < 64; y++) {
+        for (uint64_t x = 0; x < 64; x++) {
+            int32_t val = 0;
 
-        *(int32_t *)(base_ptr+lv[0].ptr+i*4) = val;
+            if (x < 4) {
+                val = -1;
+            } else if (y == 2) {
+                val = 1;
+            }
+
+            *tile_ptr = val;
+            tile_ptr++;
+        }
     }
 
 

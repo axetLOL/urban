@@ -10,6 +10,7 @@
 extern uint32_t time_ms;
 extern uint8_t *base_ptr, *delta_ptr, *req_ptr;
 extern logical_volume_header *lv;
+extern uint64_t lv_count;
 
 void session_new(void);
 void session_load(void);

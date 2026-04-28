@@ -15,6 +15,8 @@ uint8_t *base_ptr, *delta_ptr, *req_ptr;
 
 logical_volume_header *lv;
 
+uint64_t lv_count=1;
+
 /* ── dispatch ── */
 typedef void (*handler_fn)(void);
 
