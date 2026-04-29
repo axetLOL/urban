@@ -1,7 +1,7 @@
 {
-  "name": "electron-playbox",
-  "version": "1.5.0",
-  "description": "Abstraction layer for Electron.",
+  "name": "urban",
+  "version": "0.1.0",
+  "description": "A game.",
   "license": "MIT",
   "author": "TSTEAS2008",
   "type": "module",
