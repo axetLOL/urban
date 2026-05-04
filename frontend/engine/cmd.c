@@ -12,22 +12,62 @@ void session_new(void) {
 
     lv = ( logical_volume_header *)(base_ptr+16);
 
-    //LV1 header, tiles
-    lv[0].size = 4*64*64; //size of LV1
+    //LV1 header, global gamestate
+    lv[0].size = sizeof(game_state_structure);
     lv[0].ptr = 16+*(uint64_t *)(base_ptr+8)+63;
-    lv[0].ptr -= lv[0].ptr%64; //ptr of LV1
-    lv[0].id = 1; //ID of LV1
+    lv[0].ptr -= lv[0].ptr%64;
+    lv[0].id = 1;
 
-    //L1 content, tiles
-    int32_t *tile_ptr = (int32_t *)(base_ptr + lv[0].ptr);
+    //LV1 contents, global gamestate
+
+    game_state = (game_state_structure *)(base_ptr+lv[0].ptr);
+
+    (*game_state).money.base = 4.0f;
+    (*game_state).money.coef = 4;
+    (*game_state).pos_1.x = 0;
+    (*game_state).pos_1.y = 0;
+    (*game_state).pos_2.x = 1920;
+    (*game_state).pos_2.y = 1080;
+
+
+    //LV2 header, building sizes
+
+    lv[1].size=sizeof(building_size)*building_count;
+    lv[1].ptr = lv[0].ptr+lv[0].size+63;
+    lv[1].ptr -= lv[1].ptr%64;
+    lv[1].id = 2;
+    
+    //LV2 contents, building sizes
+
+    //to be added
+
+    //LV3 header, building prices
+
+    lv[2].size=sizeof(scaled_double)*building_count;
+    lv[2].ptr = lv[1].ptr+lv[1].size+63;
+    lv[2].ptr -= lv[2].ptr%64;
+    lv[2].id = 3;
+
+    //LV3 header, building prices
+
+    //to be added
+
+    //LV4 header, tiles
+    lv[3].size = sizeof(int32_t)*64*64; 
+    lv[3].ptr = lv[2].ptr+lv[2].size+63;
+    lv[3].ptr -= lv[3].ptr%64; 
+    lv[3].id = 4; 
+
+    //LV4 content, tiles
+    int32_t *tile_ptr = (int32_t *)(base_ptr + lv[3].ptr);
 
     for (uint64_t y = 0; y < 64; y++) {
         for (uint64_t x = 0; x < 64; x++) {
             int32_t val = 0;
 
-            if (x < 4) {
+            if (y < 4) {
                 val = -1;
-            } else if (y == 2) {
+            } else if (x == 2) {
                 val = 1;
             }
 
@@ -35,7 +75,6 @@ void session_new(void) {
             tile_ptr++;
         }
     }
-
 
     return;
 }
@@ -64,4 +103,19 @@ void dump_to_file(void){
         printf("DEBUG: Failed to open %s. Reason: %s\n", "dump.bin", strerror(errno));
     }
     return;
+}
+
+//4 byte x, 4 byte y, 4 byte building ID
+void tile_build (void){
+    return;
+}
+
+//4 byte x, 4 byte y
+void tile_clear (void){
+    return;
+}
+
+// 16 bytes: x_1, y_1, x_2, y_2
+void viewbox_register (void) {
+
 }

@@ -8,4 +8,26 @@ typedef struct {
     uint64_t id;
 } logical_volume_header;
 
+typedef struct {
+    double base;
+    uint64_t coef;
+} scaled_double;
+
+typedef struct {
+    int32_t x;
+    int32_t y;
+} position;
+
+typedef struct {
+    scaled_double money;
+    position pos_1;
+    position pos_2;
+} game_state_structure;
+
+typedef struct {
+    uint8_t x;
+    uint8_t y;
+
+} building_size;
+
 #endif
