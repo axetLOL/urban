@@ -106,6 +106,14 @@ void dump_to_file(void){
 
 //4 byte x, 4 byte y, 4 byte building ID
 void tile_build (void){
+    int32_t id;
+    uint32_t x, y;
+    fread(&x, 4, 1, stdin);
+    fread(&y, 4, 1, stdin);
+    fread(&id, 4, 1, stdin);
+    uint64_t ptr=lv[3].ptr;
+    *(int32_t *)((int32_t *)ptr+y*64+x)=id;
+
     return;
 }
 
