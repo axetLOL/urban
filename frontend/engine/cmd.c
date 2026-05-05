@@ -22,8 +22,7 @@ void session_new(void) {
 
     game_state = (game_state_structure *)(base_ptr+lv[0].ptr);
 
-    (*game_state).money.base = 4.0f;
-    (*game_state).money.coef = 4;
+    (*game_state).money = 40000.0f;
     (*game_state).pos_1.x = 0;
     (*game_state).pos_1.y = 0;
     (*game_state).pos_2.x = 1920;
@@ -43,7 +42,7 @@ void session_new(void) {
 
     //LV3 header, building prices
 
-    lv[2].size=sizeof(scaled_double)*building_count;
+    lv[2].size=sizeof(double)*building_count;
     lv[2].ptr = lv[1].ptr+lv[1].size+63;
     lv[2].ptr -= lv[2].ptr%64;
     lv[2].id = 3;
