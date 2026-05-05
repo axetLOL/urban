@@ -116,5 +116,15 @@ void tile_clear (void){
 
 // 16 bytes: x_1, y_1, x_2, y_2
 void viewbox_register (void) {
+    int32_t x_1, y_1, x_2, y_2;
+    fread(&x_1, 4, 1, stdin);
+    fread(&y_1, 4, 1, stdin);
+    fread(&x_2, 4, 1, stdin);
+    fread(&y_2, 4, 1, stdin);
+    (*game_state).pos_1.x = x_1;
+    (*game_state).pos_1.y = y_1;
+    (*game_state).pos_2.x = x_2;
+    (*game_state).pos_2.y = y_2;
+    return;
 
-}
+}   
