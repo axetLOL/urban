@@ -1,20 +1,25 @@
-
+@font-face {
+    font-family: Roboto;
+    src: url(static://components/game/assets/fonts/Roboto-Light.ttf);
+}
 h1 {
     margin-bottom: var(--space-30);
     color: var(--color-accent);
-    font-size: var(--space-100);
+    font-size: var(--space-150);
+  
 }
 
 .button-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--space-200), 1fr));
-    gap: var(--space-20);
+    gap: var(--space-45);
     width: 100%;
-    max-width: var(--space-800);
+    max-width: var(--space-200);
+    
 }
 
 button {
-    padding: var(--space-15) var(--space-20);
+    padding: var(--space-12) var(--space-20);
     font-size: var(--space-40);
     border: none;
     border-radius: var(--space-12);
@@ -23,10 +28,12 @@ button {
     cursor: pointer;
     box-shadow: 0 var(--space-2) var(--space-5) rgba(0,0,0,0.3);
     transition: background-color 0.2s ease-in-out;
+
 }
 
 button:hover {
     background-color: var(--color-button-hover-start);
+
 }
 
 
@@ -41,4 +48,50 @@ border: var(--space-2) solid var(--color-border);
 
 #process-list {
     font-size: var(--space-40);
+}
+
+#loadGameMenu {
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 16 / 9;
+    width: 100vw;
+    height: calc(100vw * 9 / 16);
+    max-height: 100vh;
+    
+    max-width: calc(100vh * 16 / 9);
+    background-color: var(--color-bg-dark);
+    background-image: url(static://components/game/assets/lgmBackground.jpg); /* Aici ar trb sa fie o poza doar ca nu se poate incarca pe git */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    container-type: size;
+    display:none;
+}
+#lgmTitle{
+    position: absolute;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 3vw;
+    top: var(--space-20);
+    left: var(--space-20);
+    font-weight: bold;
+    
+}
+#lgmExit{
+    position: absolute;
+    top: var(--space-20);
+    right: var(--space-20);
+    width: var(--space-80);
+    height: var(--space-80);
+    background: transparent; 
+    background-image: url(static://components/game/assets/lgmBtnExit.png);/* Aici ar trb sa fie o poza doar ca nu se poate incarca pe git */
+    background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;                
+    outline: none;               
+    box-shadow: none;           
+    cursor: pointer;
 }

@@ -7,18 +7,24 @@
                script-src 'self' static: 'unsafe-inline';
                style-src 'self' static:;
                object-src 'none';">
-    <title>Process Manager</title>
+    <title>Urban</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Process Manager</h1>
-
+    <h1>Urban</h1>
+    
     <div class="button-grid">
-        <button id="btnRefresh">Refresh List</button>
-        <button id="btnKillAll">Kill All Processes</button>
+         <button id="btnNewGame">New Game</button>
+        <button id="btnLoadGame">Load Game</button>
+        <button id="btnBackMainMenu">Back To Main Menu</button>
     </div>
 
     <div id="process-list"></div>
+    <div id="loadGameMenu">
+        <h1 id="lgmTitle">SELECT SAVED GAME</h1>
+        <button id="lgmExit"></button>
+    </div>
+    
 
     <script type="importmap">
     {
